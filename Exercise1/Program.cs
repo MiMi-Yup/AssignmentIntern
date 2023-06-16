@@ -23,12 +23,16 @@ namespace Exercise1
             return (hours, minutes);
         }
 
-        static double CalLesserAngle(double hour, double minutes)
+        static double CalLesserAngle(double hours, double minutes)
         {
+            //formating input 
+            hours = hours == 12 ? 0 : hours;
+            minutes = minutes == 60 ? 0 : minutes;
+
             //(minute * 1.0 / 60) * 360 = minute * 6.0;
             double angleOfMinute = minutes * 6.0;
             //((hour + minute * 1.0 / 60) / 12) * 360 = hour * 30 + minute * 1.0 / 2
-            double angleOfHour = hour * 30 + minutes * 1.0 / 2;
+            double angleOfHour = hours * 30 + minutes * 1.0 / 2;
 
             double offsetAngle = Math.Abs(angleOfHour - angleOfMinute);
             //get lesser angle
@@ -40,10 +44,6 @@ namespace Exercise1
         static void Main(string[] args)
         {
             (int hours, int minutes) = ReadInput();
-
-            //formating input 
-            hours = hours == 12 ? 0 : hours;
-            minutes = minutes == 60 ? 0 : minutes;
 
             double offsetAngle = CalLesserAngle(hours, minutes);
 
